@@ -27,7 +27,7 @@ jobs:
       - name: Install CoinUtils
         run: >
           cd /tmp
-          && git clone -b stable/2.11 https://github.com/Mizux/CoinUtils.git
+          && git clone -b stable/2.11 --depth=1 https://github.com/Mizux/CoinUtils.git
           && cd CoinUtils
           && cmake -S. -Bbuild
           && cmake --build build --config Release
@@ -39,7 +39,7 @@ jobs:
           cmake -S. -Bbuild
           -G "${{ matrix.cmake.generator }}"
           -DCMAKE_BUILD_TYPE="$BUILD_TYPE"
-          -DCMAKE_INSTALL_PREFIX=install
+          -DCMAKE_INSTALL_PREFIX=build/install
       - name: Build
         run: >
           cmake --build build
